@@ -1,24 +1,74 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column          | Type     | Options     |
+| --------------- | -------- | ----------- |
+| nickname        | string   | null: false |
+| email           | string   | null: false |
+| password        | string   | null: false |
+| last_name       | string   | null: false |
+| first_name      | string   | null: false |
+| last_name_kana  | string   | null: false |
+| first_name_kana | string   | null: false |
+| birthday        | datetime | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :products
+- has_many :buys
+- has_one  :adress
 
-* Configuration
+## products テーブル
 
-* Database creation
+| Column   | Type       | Options                        |
+| -------- | ---------- | ------------------------------ |
+| image    |            | null: false                    |
+| title    | string     | null: false                    |
+| describe | text       | null: false                    |
+| category | string     | null: false                    |
+| status   | string     | null: false                    |
+| delivery | string     | null: false                    |
+| area     | string     | null: false                    |
+| date     | string     | null: false                    |
+| price    | integer    | null: false                    |
+| user     | references | null: false, foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- has_one    :buy
 
-* Services (job queues, cache servers, search engines, etc.)
+## buys テーブル
 
-* Deployment instructions
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| card_number | string     | null: false                    |
+| expiration  | string     | null: false                    |
+| security    | string     | null: false                    |
+| tel         | integer    | null: false                    |
+| user        | references | null: false, foreign_key: true |
+| product     | references | null: false, foreign_key: true |
 
-* ...
+### Association
+
+- belongs_to :user
+- belongs_to :product
+- has_one    :adress
+
+## addresses テーブル
+
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| postal_code | integer    | null: false                    |
+| prefectures | string     | null: false                    |
+| city        | string     | null: false                    |
+| street      | string     | null: false                    |
+| building    | string     |                                |
+| user        | references | null: false, foreign_key: true |
+| buy         | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :buy
