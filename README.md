@@ -17,7 +17,6 @@
 
 - has_many :products
 - has_many :buys
-- has_one  :adress
 
 ## products テーブル
 
@@ -49,21 +48,20 @@
 
 - belongs_to :user
 - belongs_to :product
-- has_one    :adress
+- has_one    :address
 
 ## addresses テーブル
 
-| Column      | Type       | Options                        |
-| ----------- | ---------- | ------------------------------ |
-| postal_code | string     | null: false                    |
-| prefectures_id | integer     | null: false                    |
-| city        | string     | null: false                    |
-| street      | string     | null: false                    |
-| building    | string     |                                |
-| tel         | integer    | null: false                    |
-| buy         | references | null: false, foreign_key: true |
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| postal_code    | string     | null: false                    |
+| prefectures_id | integer    | null: false                    |
+| city           | string     | null: false                    |
+| street         | string     | null: false                    |
+| building       | string     |                                |
+| tel            | string     | null: false                    |
+| buy            | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
 - belongs_to :buy
