@@ -20,6 +20,8 @@ class User < ApplicationRecord
 
     validates :birthday
   end
+
+  has_many :products
 end
 
 # passwordのバリデーションの設定は下記の表記でも可能
