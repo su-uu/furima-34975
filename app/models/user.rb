@@ -22,8 +22,6 @@ class User < ApplicationRecord
   end
 end
 
-has_many :products
-
 # passwordのバリデーションの設定は下記の表記でも可能
 # validate :password_complexity
 # def password_complexity
