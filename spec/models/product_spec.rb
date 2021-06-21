@@ -4,7 +4,7 @@ RSpec.describe Product, type: :model do
   describe '商品出品' do
     before do
       @product = FactoryBot.build(:product)
-      @product.image = fixture_file_upload("app/assets/images/furima-logo-color.png")
+      @product.image = fixture_file_upload('app/assets/images/furima-logo-color.png')
     end
 
     context '商品出品ができるとき' do
@@ -48,7 +48,7 @@ RSpec.describe Product, type: :model do
         expect(@product).to be_valid
       end
     end
-  
+
     context '商品出品ができないとき' do
       it 'imageが存在しないと保存できないこと' do
         @product.image = nil
@@ -98,22 +98,22 @@ RSpec.describe Product, type: :model do
       it 'priceが300円未満だと保存できないこと' do
         @product.price = '299'
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price out of setting range")
+        expect(@product.errors.full_messages).to include('Price out of setting range')
       end
       it 'priceが10,000,000円以上だと保存できないこと' do
         @product.price = '10000000'
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price out of setting range")
+        expect(@product.errors.full_messages).to include('Price out of setting range')
       end
       it 'priceが全角数字だと保存できないこと' do
         @product.price = '３００'
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price is invalid. Input half-width characters")
+        expect(@product.errors.full_messages).to include('Price is invalid. Input half-width characters')
       end
       it 'userが紐付いていないと保存できないこと' do
         @product.user = nil
         @product.valid?
-        expect(@product.errors.full_messages).to include("User must exist")
+        expect(@product.errors.full_messages).to include('User must exist')
       end
     end
   end
