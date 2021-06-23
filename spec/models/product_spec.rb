@@ -101,7 +101,7 @@ RSpec.describe Product, type: :model do
         expect(@product.errors.full_messages).to include('Price out of setting range')
       end
       it 'priceが10,000,000円以上だと保存できないこと' do
-        @product.price = 10000000
+        @product.price = 10_000_000
         @product.valid?
         expect(@product.errors.full_messages).to include('Price out of setting range')
       end
