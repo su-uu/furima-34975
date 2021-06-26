@@ -6,7 +6,7 @@ class Product < ApplicationRecord
     validates :image, :title, :describe, :price
 
     # ジャンルの選択が「---」の時は保存できないようにする
-    validates :category_id, :status_id, :delivery_id, :prefectures_id, :shipping_date_id,
+    validates :category_id, :status_id, :delivery_id, :prefecture_id, :shipping_date_id,
               numericality: { other_than: 1, message: "can't be blank" }
   end
 
