@@ -22,6 +22,7 @@ class User < ApplicationRecord
   end
 
   has_many :products
+  has_many :buys
 end
 
 # passwordのバリデーションの設定は下記の表記でも可能
