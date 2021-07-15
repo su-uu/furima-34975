@@ -5,6 +5,7 @@ class BuysController < ApplicationController
     @product = Product.find(params[:product_id])
     @buy_address = BuyAddress.new
     move_to_index
+    move_to_index_seller
   end
 
   def create
@@ -36,6 +37,12 @@ class BuysController < ApplicationController
     end
 
     def move_to_index
-      redirect_to root_path unless current_user.id != @product.user_id
+      if @product.buy != nil
+        redirect_to root_path unless current_user.id == @product.user_id
+      end
+    end
+
+    def move_to_index_seller
+        redirect_to root_path unless current_user.id != @product.user_id
     end
 end
