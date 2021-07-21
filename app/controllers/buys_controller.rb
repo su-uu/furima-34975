@@ -1,7 +1,6 @@
 class BuysController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
 
-  
   def index
     @product = Product.find(params[:product_id])
     @buy_address = BuyAddress.new
@@ -25,7 +24,7 @@ class BuysController < ApplicationController
 
   private
   def buy_params
-    params.require(:buy_address).permit(:postal_code, :prefecture_id, :city, :street, :building, :tel, :product_id).merge(user_id: current_user.id, token: params[:token])
+    params.require(:buy_address).permit(:postal_code, :prefecture_id, :city, :street, :building, :tel).merge(user_id: current_user.id, product_id: params[:product_id], token: params[:token])
   end
 
   def pay_item
