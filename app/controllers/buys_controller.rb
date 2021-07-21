@@ -23,26 +23,27 @@ class BuysController < ApplicationController
   end
 
   private
+
   def buy_params
-    params.require(:buy_address).permit(:postal_code, :prefecture_id, :city, :street, :building, :tel).merge(user_id: current_user.id, product_id: params[:product_id], token: params[:token])
+    params.require(:buy_address).permit(:postal_code, :prefecture_id, :city, :street, :building, :tel).merge(
+      user_id: current_user.id, product_id: params[:product_id], token: params[:token]
+    )
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
-        amount: @product.price,
-        card: buy_params[:token],
-        currency: 'jpy'
-      )
-    end
+      amount: @product.price,
+      card: buy_params[:token],
+      currency: 'jpy'
+    )
+  end
 
-    def move_to_index
-      if @product.buy != nil
-        redirect_to root_path unless current_user.id == @product.user_id
-      end
-    end
+  def move_to_index
+    redirect_to root_path if !@product.buy.nil? && !(current_user.id == @product.user_id)
+  end
 
-    def move_to_index_seller
-        redirect_to root_path unless current_user.id != @product.user_id
-    end
+  def move_to_index_seller
+    redirect_to root_path unless current_user.id != @product.user_id
+  end
 end

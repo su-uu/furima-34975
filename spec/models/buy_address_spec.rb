@@ -6,7 +6,7 @@ RSpec.describe BuyAddress, type: :model do
       user = FactoryBot.create(:user)
       @buy_address = FactoryBot.build(:buy_address, user_id: user.id)
     end
-  
+
     context '商品購入ができるとき' do
       it '全ての値が正しく入力されていれば保存できること' do
         expect(@buy_address).to be_valid
@@ -67,17 +67,17 @@ RSpec.describe BuyAddress, type: :model do
       it 'postal_codeは -(ハイフン) が存在しないと保存できないこと' do
         @buy_address.postal_code = '1234567'
         @buy_address.valid?
-        expect(@buy_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@buy_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it 'postal_codeは全角数字では保存できないこと' do
         @buy_address.postal_code = '０１２-３４５６'
         @buy_address.valid?
-        expect(@buy_address.errors.full_messages).to include("Postal code is invalid. Enter it as follows (e.g. 123-4567)")
+        expect(@buy_address.errors.full_messages).to include('Postal code is invalid. Enter it as follows (e.g. 123-4567)')
       end
       it 'postal_codeは 半角数字でハイフンが存在していても(3桁 - 4桁)以外では保存できないこと' do
         @buy_address.postal_code = '12-34'
         @buy_address.valid?
-        expect(@buy_address.errors.full_messages).to include("Postal code is invalid. Enter it as follows (e.g. 123-4567)")
+        expect(@buy_address.errors.full_messages).to include('Postal code is invalid. Enter it as follows (e.g. 123-4567)')
       end
       it 'prefecture_idが1（---）だと保存できないこと' do
         @buy_address.prefecture_id = 1
@@ -102,12 +102,12 @@ RSpec.describe BuyAddress, type: :model do
       it 'telが10桁以下では保存できないこと' do
         @buy_address.tel = '012345678'
         @buy_address.valid?
-        expect(@buy_address.errors.full_messages).to include("Tel is too short")
+        expect(@buy_address.errors.full_messages).to include('Tel is too short')
       end
       it 'telが全角数字では保存できないこと' do
         @buy_address.tel = '０１２３４５６７８９'
         @buy_address.valid?
-        expect(@buy_address.errors.full_messages).to include("Tel is invalid. Input only number")
+        expect(@buy_address.errors.full_messages).to include('Tel is invalid. Input only number')
       end
       it 'userが紐付いていないと保存できないこと' do
         @buy_address.user_id = nil
