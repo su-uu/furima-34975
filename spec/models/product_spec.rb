@@ -35,8 +35,8 @@ RSpec.describe Product, type: :model do
         @product.delivery_id = 2
         expect(@product).to be_valid
       end
-      it 'prefectures_idが1以上（--- 以外）であれば保存できること' do
-        @product.prefectures_id = 2
+      it 'prefecture_idが1以上（--- 以外）であれば保存できること' do
+        @product.prefecture_id = 2
         expect(@product).to be_valid
       end
       it 'shipping_date_idが1以上（--- 以外）であれば保存できること' do
@@ -80,10 +80,10 @@ RSpec.describe Product, type: :model do
         @product.valid?
         expect(@product.errors.full_messages).to include("Delivery can't be blank")
       end
-      it 'prefectures_idが1（---）だと保存できないこと' do
-        @product.prefectures_id = 1
+      it 'prefecture_idが1（---）だと保存できないこと' do
+        @product.prefecture_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include("Prefectures can't be blank")
+        expect(@product.errors.full_messages).to include("Prefecture can't be blank")
       end
       it 'shipping_date_idが1（---）だと保存できないこと' do
         @product.shipping_date_id = 1

@@ -25,4 +25,5 @@ class Product < ApplicationRecord
   belongs_to :prefecture
   belongs_to :shipping_date
   has_one_attached :image
+  has_one :buy
 end
