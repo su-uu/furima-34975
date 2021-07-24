@@ -103,8 +103,13 @@ RSpec.describe BuyAddress, type: :model do
         @buy_address.valid?
         expect(@buy_address.errors.full_messages).to include("Tel can't be blank")
       end
-      it 'telが10桁以下では保存できないこと' do
+      it 'telが9桁以下では保存できないこと' do
         @buy_address.tel = '012345678'
+        @buy_address.valid?
+        expect(@buy_address.errors.full_messages).to include('Tel is too short')
+      end
+      it 'telが11桁以上では保存できないこと' do
+        @buy_address.tel = '123456789012'
         @buy_address.valid?
         expect(@buy_address.errors.full_messages).to include('Tel is too short')
       end
