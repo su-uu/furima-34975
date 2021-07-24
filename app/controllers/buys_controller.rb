@@ -40,6 +40,6 @@ class BuysController < ApplicationController
   end
 
   def move_to_index
-    redirect_to root_path if !@product.buy.nil? && !(current_user.id == @product.user_id) || current_user.id == @product.user_id
+    redirect_to root_path if !@product.buy.nil? || current_user.id == @product.user_id
   end
 end
