@@ -10,7 +10,7 @@ class BuyAddress
     validates :tel, format: { with: /\A[0-9]+\z/, message: 'is invalid. Input only number' }
 
     # 空の投稿を保存できないようにする
-    validates :city, :street, :user_id, :token
+    validates :city, :street, :user_id, :product_id, :token
   end
 
   # postal_codeが半角数字3桁、ハイフン、数字4桁の並び以外保存できないようにする

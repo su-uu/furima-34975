@@ -7,6 +7,5 @@ FactoryBot.define do
     street          { '西池袋1-1' }
     building        { '池袋ビル101' }
     tel             { '09012345678' }
-    association :user
   end
 end

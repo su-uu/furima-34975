@@ -4,7 +4,11 @@ RSpec.describe BuyAddress, type: :model do
   describe '商品商品購入' do
     before do
       user = FactoryBot.create(:user)
-      @buy_address = FactoryBot.build(:buy_address, user_id: user.id)
+      product = FactoryBot.build(:product)
+      product.image = fixture_file_upload('app/assets/images/furima-logo-color.png')
+      product.save
+      @buy_address = FactoryBot.build(:buy_address, user_id: user.id, product_id: product.id)
+      sleep 0.1
     end
 
     context '商品購入ができるとき' do
@@ -113,6 +117,11 @@ RSpec.describe BuyAddress, type: :model do
         @buy_address.user_id = nil
         @buy_address.valid?
         expect(@buy_address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'productが紐付いていないと保存できないこと' do
+        @buy_address.product_id = nil
+        @buy_address.valid?
+        expect(@buy_address.errors.full_messages).to include("Product can't be blank")
       end
     end
   end

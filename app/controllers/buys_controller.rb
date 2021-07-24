@@ -17,7 +17,6 @@ class BuysController < ApplicationController
       @buy_address.save
       redirect_to root_path
     else
-      @product = Product.find(params[:product_id])
       render :index
     end
   end
